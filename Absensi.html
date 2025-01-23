@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Data Absen dengan Filter Parameter skpd</title>
+    <script>
+        // Data array contoh
+        var data = [
+            { id: 26036, nama: 'INDRA ISNAEN', nip: '198006092010011006', skpd: 'Dinas Tenaga Kerja' },
+            { id: 27246, nama: 'SRI IDHA SOEGIARTI', nip: '196704152008012003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26591, nama: 'ANDI RUSANTO', nip: '196804102007011016', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26616, nama: 'ERKISAH', nip: '197405222009011003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26576, nama: 'NONON CITRA WULANDARI, SH', nip: '197704102011012003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26580, nama: 'ANWARUL FALAH, S.Ag.', nip: '197111302009011003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26587, nama: 'H.DURNANI, SE.MM', nip: '197209072010011002', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26212, nama: 'RASITO, SE', nip: '197204261998031004', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26581, nama: 'ERNI JUHAENI IBRAHIM, SH', nip: '197002152007012018', skpd: 'Dinas Tenaga Kerja' },
+            { id: 25456, nama: 'Dra. HERRSI PRAMANIK SUWITA, M. Si', nip: '196811241988012002', skpd: 'Dinas Tenaga Kerja' },
+            { id: 33729, nama: 'ASEP KURNIAWAN, S.Pd. M.Pd.', nip: '198009072006041009', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26610, nama: 'ANDI KUSNADI', nip: '197911142009011006', skpd: 'Dinas Tenaga Kerja' },
+            { id: 32137, nama: 'ANDI M. AGUS SETIAWAN M, S.IP', nip: '198808102019031007', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26603, nama: 'SUKANI', nip: '197608162008011010', skpd: 'Dinas Tenaga Kerja' },
+            { id: 61002, nama: 'IIS HERDIYANTO, SE., MM', nip: '197208272002121003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26585, nama: 'SUKIRMAN, SE.', nip: '198105142005011006', skpd: 'Dinas Tenaga Kerja' },
+            { id: 33735, nama: 'AKHIM, ST.', nip: '197303102011011001', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26599, nama: 'YEPI ANDRIYANTO,ST', nip: '198711112011011003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 33737, nama: 'HENDRA NURMAN, S.Kom', nip: '198201172009021001', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26592, nama: 'WARSID, SE', nip: '197804082009011003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26597, nama: 'M.YUDA LIBRATA,S.S', nip: '199006172015021002', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26594, nama: 'ROKHMAN, S.IP', nip: '197910152009011003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26609, nama: 'ENDI SUHENDI, S.IP.', nip: '197702152008011004', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26611, nama: 'ABDUL ROJAK, S.IP', nip: '197206232009011001', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26596, nama: 'SOLEH EFENDI,S.S', nip: '198702252015021002', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26598, nama: 'MUHAMAD TOYIBIN,S.KOM.I', nip: '198908162015021001', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26590, nama: 'SUGIMAN, S.IP', nip: '197812102009011007', skpd: 'Dinas Tenaga Kerja' },
+            { id: 34164, nama: 'FAKHRUDIN, ST', nip: '197710212008011005', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26601, nama: 'INDRA WIJAYA, A.Md', nip: '198605312011011001', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26593, nama: 'SUDIRYO,S.IP', nip: '197603102008011005', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26612, nama: 'WAKNUN', nip: '198304122009011009', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26613, nama: 'TOKID', nip: '197505122014091001', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26607, nama: 'NGAISAH', nip: '197904122010012002', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26602, nama: 'DODI, A.Md', nip: '198506102010011003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 27540, nama: 'SURACHMAN', nip: '198101012009011011', skpd: 'Dinas Tenaga Kerja' },
+            { id: 32796, nama: 'DIDI JUNAEDI', nip: '197212092007011010', skpd: 'Dinas Tenaga Kerja' },
+            { id: 33730, nama: 'AHMAD DUNI , S.IP', nip: '197901082009011004', skpd: 'Dinas Tenaga Kerja' },
+            { id: 33734, nama: 'DJUANDA', nip: '198010032009011004', skpd: 'Dinas Tenaga Kerja' },
+            { id: 33732, nama: 'SUHERMAN', nip: '198003132009011009', skpd: 'Dinas Tenaga Kerja' },
+            { id: 33733, nama: 'WARGA', nip: '197012072008011004', skpd: 'Dinas Tenaga Kerja' },
+            { id: 26615, nama: 'DIDI KRISNAHADI, S.IP', nip: '198112252010011002', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60218, nama: 'AGUS HAERUL RIZAL, A.Md.Kom.', nip: '199808262022031007', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60112, nama: 'ANDRE PRILLY KURNIAWAN, S.Kom', nip: '199504102022031011', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60301, nama: 'LUKMAN AHMAD YUDI, A.Md.', nip: '199707272022031017', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60374, nama: 'WAWAN SISWANTO, A.Md.', nip: '199407142022031010', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60110, nama: 'AMIN PURWITO, S.Kom', nip: '199712062022031010', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60293, nama: 'KHARIRI, S.Kom', nip: '199503262022031011', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60195, nama: 'YAHDI INDRAWAN, S.Kom', nip: '199809112022031003', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60363, nama: 'TOTO SUCIPTO, A.Md', nip: '199107172022031011', skpd: 'Dinas Tenaga Kerja' },
+            { id: 72485, nama: 'GINNE TIHMAYANI, S.Sos', nip: '198206022023212027', skpd: 'Dinas Tenaga Kerja' },
+            { id: 72486, nama: 'CITRA ESTI WULANDARI, S.Kom', nip: '199306082023212053', skpd: 'Dinas Tenaga Kerja' },
+            { id: 72484, nama: 'DIENTI MARIANI, S.E', nip: '198005082023212018', skpd: 'Dinas Tenaga Kerja' },
+            { id: 72487, nama: 'DWI ADE ARINTA, A.Md', nip: '199501152023212045', skpd: 'Dinas Tenaga Kerja' },
+            { id: 60475, nama: 'IVAN RIZKY PRATAMA, A.Md.Kom', nip: '199610192022031013', skpd: 'Bkpsdm' },
+            { id: 60434, nama: 'FITRIA TRISTIANI, A. Md', nip: '199204042022032012', skpd: 'Bkpsdm' },
+            { id: 25058, nama: 'PRAHASITA DIAH SEKAR SAPUTRI, A . Md', nip: '199303172019032008', skpd: 'Bkpsdm' },
+            { id: 39841, nama: 'SUNARTO, S.SI', nip: '199108222020121010', skpd: 'Bkpsdm' },
+            { id: 25013, nama: 'Hj. SRI TITIN FUJIATIN, SE', nip: '197106021998032003', skpd: 'Bkpsdm' },
+            { id: 60470, nama: 'JEESME AULEA, A.Md.M', nip: '199901112022032015', skpd: 'Bkpsdm' },
+            { id: 60354, nama: 'SUCI PUTIKHA, A.Md', nip: '199108082022032014', skpd: 'Bkpsdm' },
+            { id: 60334, nama: 'RIZALLUDIN, A.Md.Kom', nip: '199811272022031013', skpd: 'Bkpsdm' },
+            { id: 60362, nama: 'TOPAN FEBRIANTO, S.Kom', nip: '198902272022031006', skpd: 'Bkpsdm' },
+            { id: 25018, nama: 'NURDE CHRISTIEN JUNIASRY, SH., MM', nip: '197206092007012003', skpd: 'Bkpsdm' },
+            { id: 39840, nama: 'ANGGIE AUDINA IKHWANUDIN, S.Kom', nip: '199502212020122020', skpd: 'Bkpsdm' },
+            { id: 25009, nama: 'RINRIYATI, S.Kom', nip: '197710252009042002', skpd: 'Bkpsdm' },
+            { id: 25057, nama: 'SRIE REJEKI LESTARI, A . Md', nip: '199302242019032014', skpd: 'Bkpsdm' },
+            { id: 60302, nama: 'M BAGUS PAMUNGKAS, A.Md. Kom', nip: '199104052022031011', skpd: 'Bkpsdm' },
+            { id: 25056, nama: 'RUSTONO, A . Md', nip: '197506022005011002', skpd: 'Bkpsdm' },
+            { id: 25014, nama: 'KALIL, S.IP', nip: '198007161999031003', skpd: 'Bkpsdm' },
+            { id: 25017, nama: 'TITIN NURHAERI, SE, MM', nip: '197506052006042011', skpd: 'Bkpsdm' },
+            { id: 60408, nama: 'RICKY DHITA PRASETYA, A.Md.', nip: '199406142022031011', skpd: 'Bkpsdm' },
+            { id: 60372, nama: 'WAHYU HIDAYAT, A.Md', nip: '199108312022031008', skpd: 'Bkpsdm' },
+            { id: 25417, nama: 'SODIKIN, S.Ag', nip: '196901181998031007', skpd: 'Bkpsdm' },
+            { id: 25241, nama: 'ONO HARSONO, SH', nip: '198101282006041006', skpd: 'Bkpsdm' },
+            { id: 25276, nama: 'SUKMA CITRA PERTIWI, S.STP.,MAP', nip: '198012171999122001', skpd: 'Bkpsdm' },
+            { id: 25274, nama: 'SRI DEWI GUSTIANI, S.STP', nip: '198508252004122001', skpd: 'Bkpsdm' },
+            { id: 25038, nama: 'SUHERMAN', nip: '196807022007011008', skpd: 'Bkpsdm' },
+            { id: 25027, nama: 'UJIANTO', nip: '196910162010011001', skpd: 'Bkpsdm' },
+            { id: 60403, nama: 'REGITA WIAGNES, A.md', nip: '199703232022032016', skpd: 'Bkpsdm' },
+            { id: 25037, nama: 'ISROFI', nip: '198001082010011003', skpd: 'Bkpsdm' },
+            { id: 60276, nama: 'DWI RETNO, A.Md', nip: '198905292022032009', skpd: 'Bkpsdm' },
+            { id: 25044, nama: 'RAHMAT', nip: '198207222010011006', skpd: 'Bkpsdm' },
+            { id: 68865, nama: 'ULFAH MEIDYA RACHMAWATI, S.STP.,M.Si', nip: '198705232006022001', skpd: 'Bkpsdm' },
+            { id: 25035, nama: 'TEDI GUMIADI', nip: '197707241997031002', skpd: 'Bkpsdm' },
+            { id: 25045, nama: 'RIKE YULIYANTI, SE', nip: '198007082010012003', skpd: 'Bkpsdm' },
+            { id: 25236, nama: 'HERU HAIRUDIN PERMANA, S.IP', nip: '199204142019031012', skpd: 'Bkpsdm' },
+            { id: 25033, nama: 'TELLY MARLITA SARI, S.IP', nip: '198303152009022004', skpd: 'Bkpsdm' },
+            { id: 25340, nama: 'AGUSTIN AWANDARI,S.IP', nip: '199208192015072001', skpd: 'Bkpsdm' },
+            { id: 25053, nama: 'HABIBAH AR, SE', nip: '197711102008012005', skpd: 'Bkpsdm' },
+            { id: 25028, nama: 'DIDIET PURWADI DARSONO, S.Kom', nip: '198903162019031004', skpd: 'Bkpsdm' },
+            { id: 25022, nama: 'KASARI, SE', nip: '197411042000031004', skpd: 'Bkpsdm' },
+            { id: 25047, nama: 'DIAN RIHAYANI, A. Md.,S.Pd', nip: '197806262010012002', skpd: 'Bkpsdm' },
+            { id: 25026, nama: 'TJASHUDI', nip: '196504061993021001', skpd: 'Bkpsdm' },
+            { id: 99999, nama: 'ARBAIN TSURURI, S.Tr.IP', nip: '200003212023082001', skpd: 'Bkpsdm' },
+            { id: 25031, nama: 'TATY HANDARINIH, SH', nip: '198307062010012001', skpd: 'Bkpsdm' },
+            { id: 26932, nama: 'HUSNI EFENDI', nip: '197804192009011005', skpd: 'Bkpsdm' },
+            { id: 25029, nama: 'DEDI SUHERMAN, S.Kom', nip: '199012072015021001', skpd: 'Bkpsdm' },
+            { id: 25048, nama: 'NANIDAH', nip: '198109212010012002', skpd: 'Bkpsdm' },
+            { id: 25051, nama: 'UDIN WAHYUDIN', nip: '197305062006041018', skpd: 'Bkpsdm' },
+            { id: 60212, nama: 'RIFQY FADHILAH RAHMAN, S.E', nip: '199410282022031008', skpd: 'Bkpsdm' },
+            { id: 60161, nama: 'MOHAMAD ZAENI MUTTAQIEN, S.E.', nip: '198912102022031005', skpd: 'Bkpsdm' },
+            { id: 60321, nama: 'NASUDYON UNUS, A.Md', nip: '199907292022031007', skpd: 'Bkpsdm' },
+            { id: 25689, nama: 'FANI ZAELANI, S.Kom', nip: '199108082019031010', skpd: 'Bkpsdm' },
+            { id: 25238, nama: 'ARYADI, SH', nip: '198211172010011002', skpd: 'Bkpsdm' },
+            { id: 26683, nama: 'ARI RISDIANTO, AP., M.Si.', nip: '197502271993111002', skpd: 'Inspektorat' },
+            { id: 27249, nama: 'H. WASGA CIPTOWIBOWO, SH, MSi', nip: '196401101993121001', skpd: 'Inspektorat' },
+            { id: 103741, nama: 'RAIHANAH PUTRI NURLIYANA, S.Tr.I.P.', nip: '200006052023082001', skpd: 'Inspektorat' },
+            { id: 26658, nama: 'HANURA HADI, SE.', nip: '196609211999011001', skpd: 'Inspektorat' },
+            { id: 26657, nama: 'HASAN BISRI, SE.', nip: '197205151995031001', skpd: 'Inspektorat' },
+            { id: 26689, nama: 'FARID INDRA FIRMANSYAH, SE', nip: '198402112019031007', skpd: 'Inspektorat' },
+            { id: 26669, nama: 'DARIM, SE.', nip: '197607022000031006', skpd: 'Inspektorat' },
+            { id: 26679, nama: 'MOHAMAD DIDING A, SH.', nip: '198004062015021001', skpd: 'Inspektorat' },
+            { id: 37852, nama: 'KARLINA DWI PUTRI, S.STP', nip: '199401022017082002', skpd: 'Inspektorat' },
+            { id: 26673, nama: 'NANO SUPRIYATNO, S.IP.', nip: '197707132010011002', skpd: 'Inspektorat' },
+            { id: 26665, nama: 'HARIS DIMYATI, SE.', nip: '197903312005011010', skpd: 'Inspektorat' },
+            { id: 26663, nama: 'TAUFIK HIDAYAT, S.IP.', nip: '198211072010011003', skpd: 'Inspektorat' },
+            { id: 26678, nama: 'EKA WAHYUDI, ST.', nip: '197709272009011006', skpd: 'Inspektorat' },
+            { id: 26681, nama: 'FRANKY YULIANTO, SH.', nip: '198007032009011005', skpd: 'Inspektorat' },
+            { id: 25666, nama: 'INDRA HERYADI, SE', nip: '198208312010011004', skpd: 'Inspektorat' },
+            { id: 26680, nama: 'DEDE SULAEMAN, SH.', nip: '198602272010011002', skpd: 'Inspektorat' },
+            { id: 39850, nama: 'DWI SUSANTO, S.T', nip: '199204292020121014', skpd: 'Inspektorat' },
+            { id: 26617, nama: 'CARNITI', nip: '196604092007012006', skpd: 'Inspektorat' },
+            { id: 25237, nama: 'KHUSNUL KHOTIMAH, SH', nip: '199602262019032013', skpd: 'Inspektorat' },
+            { id: 25682, nama: 'YUDHA INDRAMAWAN', nip: '197804302014091001', skpd: 'Inspektorat' },
+            { id: 25263, nama: 'YANDHI APRILIANTO, SE', nip: '198404032019031010', skpd: 'Inspektorat' },
+            { id: 26618, nama: 'RUDI RAHMADI', nip: '197112232007011004', skpd: 'Inspektorat' },
+            { id: 26694, nama: 'IRWANTO, SE', nip: '199007162019031006', skpd: 'Inspektorat' },
+            { id: 25032, nama: 'AKHMAD WAHYUDI, S.IP', nip: '197904192010011002', skpd: 'Inspektorat' },
+            { id: 26695, nama: 'IRAWAN PURSETIYANTO, SE', nip: '198410072019031007', skpd: 'Inspektorat' },
+            { id: 39849, nama: 'DIMAS HANIF FACHREZA, S.Pi', nip: '198907222020121006', skpd: 'Inspektorat' },
+            { id: 25342, nama: 'MOHAMAD CARSONO, S.IP', nip: '198001222008011002', skpd: 'Inspektorat' },
+            { id: 26656, nama: 'TARWIN, SH.,M.Si', nip: '197204021995031003', skpd: 'Inspektorat' },
+            { id: 26635, nama: 'DIKDIK SUDIKNA, BE.M S.Sos', nip: '196204161986031020', skpd: 'Inspektorat' },
+            { id: 26631, nama: 'Drs. YUYUN SUHENDI', nip: '196701211986091001', skpd: 'Inspektorat' },
+            { id: 26630, nama: 'SLAMET RIYADI, SE.', nip: '196203161996011002', skpd: 'Inspektorat' },
+            { id: 25531, nama: 'Drs. RISTOYO, M.Pd', nip: '196408101993031007', skpd: 'Inspektorat' },
+            { id: 26647, nama: 'TUSSY SYLVANA SUSANTY, S.Psi.Psi.', nip: '197410182006042004', skpd: 'Inspektorat' },
+            { id: 26636, nama: 'Drs. H. BURHAN, M.Si', nip: '196305201983051006', skpd: 'Inspektorat' },
+            { id: 26651, nama: 'LUSIA LINGGIANTI, S.Pd., S.Kep., M.Si', nip: '197803052002122003', skpd: 'Inspektorat' },
+            { id: 26645, nama: 'JANTI JANUWARTI, ST.', nip: '197101262006042001', skpd: 'Inspektorat' },
+            { id: 26632, nama: 'Drs. MOCH. SUDRAJAT', nip: '196612281997031004', skpd: 'Inspektorat' },
+            { id: 26686, nama: 'EUIS ISTIQOMAH, SE, MM', nip: '198110102009022001', skpd: 'Inspektorat' },
+            { id: 26676, nama: 'FERDY FIRMANDA, SE., M.Ak.', nip: '198105042009021001', skpd: 'Inspektorat' },
+            { id: 26655, nama: 'ERMASYANTO, SE., M.Ak.', nip: '197502022000031005', skpd: 'Inspektorat' },
+            { id: 33844, nama: 'IWAN KUSWANTO, ST', nip: '198003022006041006', skpd: 'Inspektorat' },
+            { id: 26629, nama: 'Drs. ZULKARNAIN', nip: '196202231985031009', skpd: 'Inspektorat' },
+            { id: 26640, nama: 'SRI HENDRIYANI, S.Kom., M.Si.', nip: '197503072009012001', skpd: 'Inspektorat' },
+            { id: 26653, nama: 'PIPIT AMALIA PUSPA, SP', nip: '197503132003122004', skpd: 'Inspektorat' },
+            { id: 26650, nama: 'DEDI KUSNAEDI, SE.', nip: '196312021991031007', skpd: 'Inspektorat' },
+            { id: 26675, nama: 'DEFI PUDIASRI, ST., M.Eng.', nip: '197804192006042004', skpd: 'Inspektorat' },
+            { id: 26649, nama: 'SARIFUDIN, ST., MT.', nip: '197612062005011011', skpd: 'Inspektorat' },
+            { id: 26642, nama: 'KHARISTIKA FAIRI P. SE.', nip: '198211012006042010', skpd: 'Inspektorat' },
+            { id: 26671, nama: 'SUMADI, SE.', nip: '197506152010011002', skpd: 'Inspektorat' },
+            { id: 26643, nama: 'SUNANSIH, SH', nip: '196306101990112002', skpd: 'Inspektorat' },
+            { id: 26687, nama: 'MOHAMAD TAKDIR', nip: '197306272008011005', skpd: 'Inspektorat' },
+            { id: 26654, nama: 'SUMARNO, SH.', nip: '197204292005011005', skpd: 'Inspektorat' },
+            { id: 26646, nama: 'GUNAWAN, SE., MM.', nip: '197310302009011004', skpd: 'Inspektorat' },
+            { id: 26644, nama: 'ADE KASNADI, SE', nip: '198610072005011002', skpd: 'Inspektorat' },
+            { id: 26659, nama: 'DONNY ANDRIKA N., ST.', nip: '198206122009021001', skpd: 'Inspektorat' },
+            { id: 26674, nama: 'ATUN DJAHROTUNIAR, S.AP.', nip: '197412131999012001', skpd: 'Inspektorat' },
+            { id: 33818, nama: 'ADE MUJTAHID HIDAYAT, ST, MT', nip: '197403172009011006', skpd: 'Inspektorat' },
+            { id: 25008, nama: 'SUHAEMI SEPTIANI, SE.,M.Si', nip: '198109212011012003', skpd: 'Inspektorat' },
+            { id: 25077, nama: 'DONNY FIANDA SAPUTRA, SE, M.Si', nip: '197703202009021001', skpd: 'Inspektorat' },
+            { id: 26685, nama: 'SIGIT YUWONO, SE', nip: '197611252006041007', skpd: 'Inspektorat' },
+            { id: 26662, nama: 'MEILINASARI, SE.', nip: '197405262009012002', skpd: 'Inspektorat' },
+            { id: 26641, nama: 'SRI PURWANINGSIH, SE.', nip: '197804172006042006', skpd: 'Inspektorat' },
+            { id: 26668, nama: 'WAWAN SETIAWAN, SH. M.Si.', nip: '196710122007011012', skpd: 'Inspektorat' },
+            { id: 26314, nama: 'ADE KHAERI ROSYADI, S.Kom', nip: '198211092011011002', skpd: 'Inspektorat' },
+            { id: 26660, nama: 'LILI CARLI, SE.', nip: '197501182008011004', skpd: 'Inspektorat' },
+            { id: 57065, nama: 'NURYATI FITRIA NINGSIH, SE', nip: '198204112005022007', skpd: 'Inspektorat' },
+            { id: 26661, nama: 'RADIYANTO, SE.', nip: '196704292007011005', skpd: 'Inspektorat' },
+            { id: 26667, nama: 'DWI MELLIYANAWATI, ST', nip: '198304022011012001', skpd: 'Inspektorat' },
+            { id: 26677, nama: 'LISKA INDAH AMALIA, SE', nip: '198602102011012001', skpd: 'Inspektorat' },
+            { id: 26692, nama: 'SUGIARTO', nip: '198304102009011007', skpd: 'Inspektorat' },
+            { id: 26664, nama: 'SUPRIYADIN, S.IP.', nip: '198004142010011004', skpd: 'Inspektorat' },
+            { id: 26670, nama: 'DEASYANA, ST.', nip: '197712252010012002', skpd: 'Inspektorat' },
+            { id: 26693, nama: 'AGUNG MAULANA', nip: '197803052010011002', skpd: 'Inspektorat' },
+            { id: 25344, nama: 'NILASARI, SE', nip: '198701212011012003', skpd: 'Inspektorat' },
+            { id: 26620, nama: 'ROSIDI', nip: '198304042008011010', skpd: 'Inspektorat' },
+            { id: 26619, nama: 'TARWINAH', nip: '198304122010011001', skpd: 'Inspektorat' },
+            { id: 26621, nama: 'RAMAN', nip: '197507022009011003', skpd: 'Inspektorat' },
+            { id: 26202, nama: 'RIYADUS SOLICHIN, SKM', nip: '198210062015021001', skpd: 'Inspektorat' },
+            { id: 26622, nama: 'TURIDI', nip: '196407082006041003', skpd: 'Inspektorat' },
+            { id: 27554, nama: 'KARTINI', nip: '197506082008012005', skpd: 'Inspektorat' },
+            { id: 26626, nama: 'JUNAEDI, S.IP', nip: '197308212010011002', skpd: 'Inspektorat' },
+            { id: 26627, nama: 'GIRI KOLOPAKING', nip: '197909202009011011', skpd: 'Inspektorat' },
+            { id: 26625, nama: 'SUBAGYO', nip: '196506032009011004', skpd: 'Inspektorat' },
+            { id: 25258, nama: 'ANITA SINTAWATI, SE', nip: '197808102011012002', skpd: 'Inspektorat' },
+            { id: 25216, nama: 'VINY RATNA GUMILANG, ST', nip: '199208082019032024', skpd: 'Inspektorat' },
+            { id: 26159, nama: 'MUHAMMAD LUKMAN HAKIM, SE', nip: '197902282008011005', skpd: 'Inspektorat' },
+            { id: 26623, nama: 'SARIP MULYADI', nip: '197902192009011002', skpd: 'Inspektorat' },
+            { id: 60331, nama: 'NURLAELAH, A.Md', nip: '198808222022032006', skpd: 'Inspektorat' },
+            { id: 60181, nama: 'SURANDI, S.Kom', nip: '199412152022031010', skpd: 'Inspektorat' },
+            { id: 60429, nama: 'FIRSTI AULYA KHUSNUL KHOTIMAH, A.Md.Kom', nip: '199808242022032023', skpd: 'Inspektorat' },
+            { id: 60357, nama: 'SYIFA FAUZIAH NURPRIATNA, A.Md. Kom', nip: '199505222022032019', skpd: 'Inspektorat' },
+            { id: 60265, nama: 'DIEMAS AGUNG PRASETYO, A.md', nip: '199908172022031005', skpd: 'Inspektorat' },
+            { id: 60320, nama: 'NANI MULYANI, A.Md', nip: '199111222022032007', skpd: 'Inspektorat' },
+            { id: 26638, nama: 'TARJONO, S.IP', nip: '196506231993021002', skpd: 'Inspektorat' },
+            { id: 26637, nama: 'DIDY KUSMULYADI, SH', nip: '196011111986031018', skpd: 'Inspektorat' },
+            { id: 26634, nama: 'Dra. TARWI, BAE, M.Si', nip: '196106031986032004', skpd: 'Inspektorat' }
+        ];
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        window.onload = function () {
+            var skpd = getParameterByName('skpd'); // Ambil nilai parameter 'skpd' dari URL
+            var tahun = getParameterByName('tahun'); // Ambil nilai parameter 'tahun' dari URL
+            var bulan = getParameterByName('bulan'); // Ambil nilai parameter 'bulan' dari URL
+            var tanggal = getParameterByName('tanggal'); // Ambil nilai parameter 'tanggal' dari URL
+            var container = document.getElementById('container');
+            var table = document.createElement('table');
+            table.classList.add('table'); // Tambahkan class 'table' ke elemen tabel
+            table.id = 'myTable'; // Set id 'myTable' pada elemen tabel
+            var headerRow = table.insertRow();
+            var headers = [' ', 'Nama/NIP', 'SKPD', 'Absen Masuk', 'Absen Pulang'];
+
+            // Buat header tabel
+            headers.forEach(function (headerText) {
+                var header = document.createElement('th');
+                header.textContent = headerText;
+                headerRow.appendChild(header);
+            });
+
+            var tbody = table.createTBody();
+
+            // Filter data berdasarkan parameter 'skpd'
+            var filteredData = data;
+            var filteredAndSortedData = data;
+            if (skpd) {
+                filteredData = data.filter(function (item) {
+                    return item.skpd === skpd;
+                });
+
+                filteredAndSortedData = filteredData.sort(function(a, b) {
+                return a.nama.localeCompare(b.nama); // Mengurutkan berdasarkan nama alfabet
+                });
+            }
+
+            // Tambahkan data ke dalam tabel
+            filteredData.forEach(function (item) {
+                var row = tbody.insertRow();
+                row.insertCell().textContent = item.id;
+                var CellNama = row.insertCell();
+                CellNama.innerHTML = item.nama + '<br> NIP. ' + item.nip;
+
+                row.insertCell().textContent = item.skpd;
+                // Tambahkan elemen img untuk absen masuk
+                var imgMasuk = document.createElement('img');
+                imgMasuk.src = 'https://akku.indramayukab.go.id/scanlog/' + tahun + '-' + bulan + '/' + tanggal + '/in-' + item.id + '-' + tahun + '-' + bulan + '-' + tanggal + '.jpg';
+                imgMasuk.alt = 'Absen Masuk ' + item.nama;
+                var cellMasuk = row.insertCell();
+                cellMasuk.appendChild(imgMasuk);
+
+                // Tambahkan elemen img untuk absen pulang
+                var imgPulang = document.createElement('img');
+                imgPulang.src = 'https://akku.indramayukab.go.id/scanlog/' + tahun + '-' + bulan + '/' + tanggal + '/out-' + item.id + '-' + tahun + '-' + bulan + '-' + tanggal + '.jpg';
+                imgPulang.alt = 'Absen Pulang ' + item.nama;
+                var cellPulang = row.insertCell();
+                cellPulang.appendChild(imgPulang);
+
+            });
+
+            var container = document.getElementById('container');
+            container.appendChild(table);
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Basic Table</h2>
+        <form action="Absensi.html" method="GET">
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <select class="form-control" name="tahun" id="tahun">
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" name="bulan" id="bulan">
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" name="tanggal" id="tanggal">
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-control" name="skpd">
+                        <option value="Dinas Tenaga Kerja">DISNAKER</option>
+                        <option value="Bkpsdm">Bkpsdm</option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary mb-2">Kirim</button>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            // Mendapatkan tanggal hari ini
+            const today = new Date();
+            const dd = String(today.getDate()).padStart(2, '0');
+            const mm = String(today.getMonth() + 1).padStart(2, '0'); // Bulan dimulai dari 0
+            const yyyy = today.getFullYear();
+
+            // Menampilkan tahun pada dropdown
+            const tahunSelect = document.getElementById('tahun');
+            for (let year = 1900; year <= yyyy; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.text = year;
+                if (year === yyyy) option.selected = true; // Set tahun sekarang sebagai default
+                tahunSelect.appendChild(option);
+            }
+
+            // Menampilkan bulan pada dropdown
+            const bulanSelect = document.getElementById('bulan');
+            for (let month = 1; month <= 12; month++) {
+                const option = document.createElement('option');
+                option.value = String(month).padStart(2, '0'); // Format bulan 2 digit
+                option.text = month;
+                if (month === parseInt(mm)) option.selected = true; // Set bulan sekarang sebagai default
+                bulanSelect.appendChild(option);
+            }
+
+            // Fungsi untuk mengisi tanggal berdasarkan bulan dan tahun
+            function updateTanggal() {
+                const selectedYear = parseInt(tahunSelect.value);
+                const selectedMonth = parseInt(bulanSelect.value);
+
+                // Menghitung jumlah hari di bulan yang dipilih
+                const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+
+                // Menampilkan tanggal pada dropdown
+                const tanggalSelect = document.getElementById('tanggal');
+                tanggalSelect.innerHTML = ''; // Kosongkan tanggal sebelumnya
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const option = document.createElement('option');
+                    option.value = String(day).padStart(2, '0'); // Format tanggal 2 digit
+                    option.text = day;
+                    if (day === parseInt(dd) && selectedMonth === parseInt(mm) && selectedYear === yyyy) {
+                        option.selected = true; // Set tanggal sekarang sebagai default
+                    }
+                    tanggalSelect.appendChild(option);
+                }
+            }
+
+            // Update tanggal ketika tahun atau bulan berubah
+            tahunSelect.addEventListener('change', updateTanggal);
+            bulanSelect.addEventListener('change', updateTanggal);
+
+            // Jalankan fungsi untuk pertama kali
+            updateTanggal();
+        </script>
+
+        <div id="container">
+            <!-- Elemen akan ditambahkan di sini oleh JavaScript -->
+        </div>
+    </div>
+</body>
+
+</html>
